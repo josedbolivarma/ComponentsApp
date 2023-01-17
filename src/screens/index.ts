@@ -8,3 +8,5 @@ export * from './PullToRefreshScreen';
 export * from './CustomSectionListScreen';
 export * from './ModalScreen';
 export * from './InfiniteScrollScreen';
+export * from './SlidesScreen';
+export * from './ChangeThemeScreen';

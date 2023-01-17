@@ -3,6 +3,8 @@ import { View, TextInput, StyleSheet, KeyboardAvoidingView, Platform, ScrollView
 import { CustomSwitch, HeaderTitle } from '../components';
 import { useForm } from '../hooks';
 import { styles } from '../theme';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
+import { useContext } from 'react';
 
 export const TextInputScreen = () => {
 
@@ -12,6 +14,8 @@ export const TextInputScreen = () => {
     phone: '',
     isSubscribed: false
   });
+
+  const { theme: { colors, dividerColor }} = useContext(ThemeContext); 
 
   return (
     <KeyboardAvoidingView
@@ -23,27 +27,42 @@ export const TextInputScreen = () => {
         <HeaderTitle title="TextInputs" />
 
         <TextInput 
-            style={ stylesScreen.inputStyle }
+            style={{
+              ...stylesScreen.inputStyle,
+              borderColor: colors.text,
+              color: colors.text
+            }}
             placeholder="Ingrese su nombre"
             autoCorrect={ false }
             autoCapitalize="words"
             onChangeText={ (value) => onChange(value, 'name') }
+            placeholderTextColor={ dividerColor }
         />
 
         <TextInput 
-            style={ stylesScreen.inputStyle }
+            style={{
+              ...stylesScreen.inputStyle,
+              borderColor: colors.text,
+              color: colors.text
+            }}
             placeholder="Ingrese su email"
             autoCorrect={ false }
             autoCapitalize="none"
             onChangeText={ (value) => onChange(value, 'email') }
             keyboardType="email-address"
+            placeholderTextColor={ dividerColor }
         />
 
         <TextInput 
-            style={ stylesScreen.inputStyle }
+            style={{
+              ...stylesScreen.inputStyle,
+              borderColor: colors.text,
+              color: colors.text
+            }}
             placeholder="Ingrese su telefono"
             onChangeText={ (value) => onChange(value, 'phone') }
             keyboardType="phone-pad"
+            placeholderTextColor={ dividerColor }
         />
 
 
@@ -57,10 +76,15 @@ export const TextInputScreen = () => {
         <HeaderTitle title={ JSON.stringify(form, null, 3) } />
 
         <TextInput 
-            style={ stylesScreen.inputStyle }
+            style={{
+              ...stylesScreen.inputStyle,
+              borderColor: colors.text,
+              color: colors.text
+            }}
             placeholder="Ingrese su telefono"
             onChangeText={ (value) => onChange(value, 'phone') }
             keyboardType="phone-pad"
+            placeholderTextColor={ dividerColor }
         />
       <View style={{ height: 100 }} />
         
@@ -76,7 +100,6 @@ export const TextInputScreen = () => {
 const stylesScreen = StyleSheet.create({
     inputStyle: {
         borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.3)',
         height: 50,
         paddingHorizontal: 10,
         borderRadius: 10,

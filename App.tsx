@@ -1,12 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme, Theme } from '@react-navigation/native';
+import { ThemeProvider } from './src/context/themeContext/ThemeContext';
 import { Navigator } from './src/navigator';
+
+const customTheme: Theme = {
+  dark: true,
+  colors: {
+    ...DarkTheme.colors,
+    // primary: '',
+    background: 'black',
+    // border: '',
+    // card: '',
+    // notification: '',
+    // text: ''
+  }
+};
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <AppState>
       <Navigator />
-    </NavigationContainer>
+    </AppState>
   );
 }
+
+const AppState = ({ children }: any) => {
+  return (
+    <ThemeProvider>
+      { children }
+    </ThemeProvider>
+  )
+};

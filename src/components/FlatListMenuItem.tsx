@@ -4,6 +4,9 @@ import { MenuItem } from '../interfaces';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/core';
+import { useTheme } from '@react-navigation/native';
+import { useContext } from 'react';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 interface Props {
     menuItem: MenuItem;
@@ -12,7 +15,9 @@ interface Props {
 export const FlatListMenuItem = ({ menuItem }: Props) => {
   
   const navigation = useNavigation() as any;
-  
+//   const { colors } = useTheme();
+     const { theme: { colors } } = useContext( ThemeContext );    
+     
   return (
     <TouchableOpacity
         activeOpacity={0.8}
@@ -21,10 +26,13 @@ export const FlatListMenuItem = ({ menuItem }: Props) => {
         <View style={ styles.container }>
         <Ionicons 
             name={ menuItem.icon as any }
-            color="#5856D6"
+            color={ colors.primary }
             size={ 23 }
         />
-        <Text style={ styles.itemText }>
+        <Text style={{
+            ...styles.itemText,
+            color: colors.text
+        }}>
             { menuItem.name }
         </Text>
         
@@ -32,7 +40,7 @@ export const FlatListMenuItem = ({ menuItem }: Props) => {
 
         <Ionicons 
             name="chevron-forward-outline"
-            color="#5856D6"
+            color={ colors.primary }
             size={ 23 }
         />
     </View>
